@@ -208,8 +208,8 @@ msg=document.getElementById("demoMsg"),clk=document.getElementById("demoClock");
 const steps=[];for(let n=1;n<=3;n++)steps.push({n,t:(n-1)*10});
 steps.push({n:3,t:23,m:'<span class="bad">❌ "Elf" · You and 12% of players guessed Elf</span>'});
 steps.push({n:4,t:24});steps.push({n:5,t:34});
-steps.push({n:5,t:38,m:'<span class="good">✅ Home Alone (1990) · +612 points!</span>',done:1});
-steps.push({n:5,t:38,m:'<span class="good">✅ Home Alone (1990) · +612 points!</span>',done:1});
+steps.push({n:5,t:38,m:'<span class="good">✅ Home Alone (1990) · +318 points!</span>',done:1});
+steps.push({n:5,t:38,m:'<span class="good">✅ Home Alone (1990) · +318 points!</span>',done:1});
 let i=0;function tick(){const s=steps[i%steps.length];
 el.innerHTML=T.slice(0,s.n).map(e=>"<span>"+e+"</span>").join("");q.style.display=s.done?"none":"";
 msg.innerHTML=s.m||"&nbsp;";clk.textContent="0:"+String(s.t).padStart(2,"0");i++}
