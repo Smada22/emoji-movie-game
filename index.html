@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Emoji Reel — guess the movie from emojis (prototype)</title>
+<link rel="stylesheet" href="style.css">
+</head><body>
+<header class="top"><div class="brand">🎬 Emoji Reel <span class="tag">prototype</span></div>
+<nav><button data-nav="home">Home</button><button data-nav="board">Leaderboard</button><button data-nav="help">How to play</button></nav></header>
+<main id="app">
+ <section id="home" class="view">
+  <div class="ad" aria-label="Advertisement placeholder">Ad placeholder · 320×100</div>
+  <h1>Guess the movie from emojis</h1>
+  <p class="sub">Up to 6 emojis revealed one at a time. Faster guesses with fewer emojis score more.</p>
+  <div class="modes">
+   <button class="card mode" id="btnDaily"><span class="big">📅</span><b>Daily</b><small id="dailyInfo">5 puzzles · same for everyone today</small></button>
+   <button class="card mode" id="btnPractice"><span class="big">♾️</span><b>Practice / Endless</b><small>All puzzles, shuffled, keep your streak going</small></button>
+  </div>
+  <label class="name">Your name for the local leaderboard <input id="playerName" maxlength="16" placeholder="Player"></label>
+  <div class="ad" aria-label="Advertisement placeholder">Ad placeholder · 300×250</div>
+ </section>
+
+ <section id="ready" class="view hidden">
+  <div class="card center"><div id="readyLabel" class="sub"></div><h2>Ready?</h2>
+  <p>Timer: 60s. A new emoji every 10s, on tap, or after a wrong guess. Max 3 wrong guesses.</p>
+  <button class="primary" id="btnStart">Start ▶</button></div>
+ </section>
+
+ <section id="round" class="view hidden">
+  <div class="roundbar"><span id="roundLabel"></span><span id="streakLabel"></span><span class="timer" id="timer">60</span></div>
+  <div class="progress"><div id="timebar"></div></div>
+  <div class="emojis" id="emojis" aria-live="polite"></div>
+  <button class="ghost" id="btnReveal">Reveal next emoji (−150 pts)</button>
+  <div class="hints">
+   <button id="hintYear" class="hint">📅 Release year <small>×0.85</small></button>
+   <button id="hintGenre" class="hint">💡 Genre + country <small>×0.75</small></button>
+  </div>
+  <div id="hintOut" class="hintout"></div>
+  <form id="guessForm" autocomplete="off" class="guess">
+   <div class="ac"><input id="guess" placeholder="Type a movie title…" aria-label="Movie title"><ul id="acList" class="aclist"></ul></div>
+   <button class="primary" type="submit">Guess</button>
+  </form>
+  <div class="row"><span id="wrongs" class="wrongs"></span><button class="link" id="btnSkip">Skip (0 pts)</button></div>
+  <div id="potential" class="potential"></div>
+ </section>
+
+ <section id="answer" class="view hidden">
+  <div id="resultHead" class="card center"></div>
+  <button class="primary wide" id="btnNext">Next puzzle →</button>
+  <div class="card"><h3>The clues</h3><ol id="whyList" class="why"></ol></div>
+  <div class="card" id="breakdown"></div>
+  <div class="card"><h3>Top wrong guesses <span class="demo">demo data</span></h3><ol id="topWrong" class="bars"></ol>
+   <p class="note">Simulated stats for this prototype, not real player data.</p></div>
+  <div class="ad" aria-label="Advertisement placeholder">Ad placeholder · 300×250 (outside the player)</div>
+  <div class="card"><h3>Official trailer</h3><div id="trailer"></div></div>
+  <div class="ad" aria-label="Advertisement placeholder">Ad placeholder · 320×100</div>
+  <div class="card" id="watch"></div>
+ </section>
+
+ <section id="summary" class="view hidden">
+  <div class="card center"><h2 id="sumTitle">Daily complete!</h2><div class="total" id="sumScore"></div>
+  <pre id="shareGrid" class="grid"></pre>
+  <button class="primary" id="btnShare">📋 Copy share grid</button> <span id="copied" class="sub"></span>
+  <p><button class="ghost" data-nav="board">See leaderboard</button> <button class="ghost" data-nav="home">Home</button></p></div>
+  <div class="ad" aria-label="Advertisement placeholder">Ad placeholder · 300×250</div>
+ </section>
+
+ <section id="board" class="view hidden">
+  <h2>Local leaderboard</h2>
+  <div class="tabs"><button class="tab on" data-board="daily">Today</button><button class="tab" data-board="weekly">This week</button></div>
+  <ol id="boardList" class="board"></ol>
+  <p class="note">Stored only in this browser (localStorage). Entries marked <span class="demo">demo</span> are sample rivals.</p>
+  <button class="link" id="btnClearBoard">Clear my local scores</button>
+ </section>
+
+ <section id="help" class="view hidden"><div class="card">
+  <h2>How to play</h2>
+  <ul><li>Start a puzzle: emoji #1 appears and a 60-second clock starts.</li>
+  <li>A new emoji appears every 10s, when you tap “Reveal”, or after each wrong guess.</li>
+  <li>Points = (1000 − 150×(emojis−1)) × (1 − 0.5×secs/60) × hints × 0.85^wrong × streak.</li>
+  <li>Hints: 📅 year ×0.85, 💡 genre+country ×0.75. Streak bonus +10% per prior solve (max +50%).</li>
+  <li>3 wrong guesses, a skip, or time out = 0 points and the streak resets. One accepted answer per puzzle.</li></ul>
+ </div></section>
+</main>
+<div id="toast" class="toast" role="status"></div>
+<footer>Prototype. Wrong-guess stats are <b>demo data</b>. Streaming info from JustWatch pages (Oct 2026, may be outdated). Trailers are official uploads embedded via YouTube (privacy-enhanced mode); see YouTube Terms of Service and Google Privacy Policy.</footer>
+<script src="data.js"></script><script src="app.js"></script>
+</body></html>
