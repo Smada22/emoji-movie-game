@@ -2,9 +2,10 @@
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Emoji Reel — guess the movie from emojis (prototype)</title>
-<link rel="stylesheet" href="style.css?v=8">
+<link rel="stylesheet" href="style.css?v=9">
+<script>(function(){var T=["premiere","neon","popcorn","glass"],t=new URLSearchParams(location.search).get("theme");if(T.indexOf(t)<0)return;document.documentElement.dataset.theme=t;var l=document.createElement("link");l.rel="stylesheet";l.href="themes/"+t+".css?v=9";document.head.appendChild(l);})();</script>
 </head><body>
-<header class="top"><div class="brand">🎬 Emoji Reel <span class="tag">prototype</span></div>
+<header class="top"><div class="brand"><span class="logo" aria-hidden="true">🎬</span> <span class="wordmark">Emoji Reel</span> <span class="tag">prototype</span></div>
 <nav><button data-nav="home">Home</button><button data-nav="board">Leaderboard</button><button data-nav="help">How to play</button></nav></header>
 <main id="app">
  <section id="home" class="view">
@@ -22,6 +23,8 @@
    <button class="card mode" id="btnDaily"><span class="big">📅</span><b>🎟️ Today's Feature</b><small id="dailyInfo">5 films, one shot at glory</small></button>
    <button class="card mode" id="btnPractice"><span class="big">♾️</span><b>🍿 Endless Marathon</b><small>How long can your streak run?</small></button>
   </div>
+  <nav class="themepick" aria-label="Preview a visual theme"><span>Theme preview:</span>
+   <a href="./" data-t="">Classic</a><a href="?theme=premiere" data-t="premiere">Premiere</a><a href="?theme=neon" data-t="neon">Neon Arcade</a><a href="?theme=popcorn" data-t="popcorn">Popcorn Pop</a><a href="?theme=glass" data-t="glass">Midnight Glass</a></nav>
   <label class="name">Your name for the local leaderboard <input id="playerName" maxlength="16" placeholder="Player"></label>
   <div class="ad" aria-label="Advertisement placeholder">Ad placeholder · 300×250</div>
  </section>
@@ -90,5 +93,5 @@
 </main>
 <div id="toast" class="toast" role="status"></div>
 <footer>Prototype. Wrong-guess stats are <b>demo data</b>. Streaming info from JustWatch pages (Oct 2026, may be outdated). Trailers are official uploads embedded via YouTube (privacy-enhanced mode); see YouTube Terms of Service and Google Privacy Policy.</footer>
-<script src="data.js?v=8"></script><script src="app.js?v=8"></script>
+<script src="data.js?v=9"></script><script src="app.js?v=9"></script>
 </body></html>

@@ -222,3 +222,5 @@ btn.addEventListener("click",()=>{const on=card.classList.toggle("hidden")===fal
  btn.textContent=on?"■ Hide demo":"▶ Watch a demo round";run++;if(on)loop(run)});})();
 
 (function(){const cd=document.getElementById("countdown");function c(){if(!cd)return;const n=new Date(),m=Date.UTC(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate()+1),d=Math.max(0,m-n),h=Math.floor(d/36e5),mm=Math.floor(d%36e5/6e4);cd.textContent=h+"h "+mm+"m"}c();setInterval(c,30000)})();
+
+(()=>{const t=document.documentElement.dataset.theme||"";document.querySelectorAll(".themepick a").forEach(x=>{if(x.dataset.t===t)x.setAttribute("aria-current","true")});})();

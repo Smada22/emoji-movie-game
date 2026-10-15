@@ -69,3 +69,10 @@ a{color:var(--acc)}
 .dinput .ph{opacity:.45}.caret{color:#f5c518;animation:pulse 1s infinite;margin-right:2px}
 .dsugg{list-style:none;margin:2px auto 0;padding:0;max-width:290px;background:#1b1b2b;border:1px solid #555;border-radius:8px;text-align:left;font-size:.85rem;overflow:hidden}
 .dsugg li{padding:.3rem .6rem;border-top:1px solid #333}.dsugg li:first-child{border-top:0}.dsugg li.sel{background:#f5c518;color:#111;font-weight:600}
+
+.themepick{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:14px 0 4px;font-size:.8rem;color:var(--mut)}
+.themepick a{color:var(--ink);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+.themepick a[aria-current]{background:var(--acc);color:#000;border-color:var(--acc);font-weight:700}
+h1{text-align:center}.sub{text-align:center}
+main{position:relative;z-index:3}footer{position:relative;z-index:1}
+.aclist{box-shadow:0 12px 30px rgba(0,0,0,.45)}
