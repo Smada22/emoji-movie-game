@@ -21,12 +21,12 @@
 
  <section id="ready" class="view hidden">
   <div class="card center"><div id="readyLabel" class="sub"></div><h2>Ready?</h2>
-  <p>Timer: 60s. A new emoji every 10s, on tap, or after a wrong guess. Max 3 wrong guesses.</p>
+  <p>Timer: 5 minutes. A new emoji every 30s, on tap, or after a wrong guess. Max 4 wrong guesses.</p>
   <button class="primary" id="btnStart">Start ▶</button></div>
  </section>
 
  <section id="round" class="view hidden">
-  <div class="roundbar"><span id="roundLabel"></span><span id="streakLabel"></span><span class="timer" id="timer">60</span></div>
+  <div class="roundbar"><span id="roundLabel"></span><span id="streakLabel"></span><span class="timer" id="timer">5:00</span></div>
   <div class="progress"><div id="timebar"></div></div>
   <div class="emojis" id="emojis" aria-live="polite"></div>
   <button class="ghost" id="btnReveal">Reveal next emoji (−150 pts)</button>
@@ -74,11 +74,11 @@
 
  <section id="help" class="view hidden"><div class="card">
   <h2>How to play</h2>
-  <ul><li>Start a puzzle: emoji #1 appears and a 60-second clock starts.</li>
+  <ul><li>Start a puzzle: emoji #1 appears and a 5-minute clock starts.</li>
   <li>A new emoji appears every 10s, when you tap “Reveal”, or after each wrong guess.</li>
-  <li>Points = (1000 − 150×(emojis−1)) × (1 − 0.5×secs/60) × hints × 0.85^wrong × streak.</li>
+  <li>Points = (1000 − 150×(emojis−1)) × (1 − 0.5×secs/300) × hints × 0.85^wrong × streak.</li>
   <li>Hints: 📅 year ×0.85, 💡 genre+country ×0.75. Streak bonus +10% per prior solve (max +50%).</li>
-  <li>3 wrong guesses, a skip, or time out = 0 points and the streak resets. One accepted answer per puzzle.</li></ul>
+  <li>4 wrong guesses, a skip, or time out = 0 points and the streak resets. One accepted answer per puzzle.</li></ul>
  </div></section>
 </main>
 <div id="toast" class="toast" role="status"></div>

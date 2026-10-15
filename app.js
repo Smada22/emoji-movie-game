@@ -2,12 +2,12 @@
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const P=window.PUZZLES;
 const FILMS=[...P.map(p=>({title:p.title,year:p.year})),...window.DECOY_FILMS.filter(d=>!P.some(p=>p.title===d.title))];
-const CFG={step:150,timeW:0.5,auto:10,window:60,year:0.85,genre:0.75,wrong:0.85,maxWrong:3,streakCap:5};
+const CFG={step:150,timeW:0.5,auto:30,window:300,year:0.85,genre:0.75,wrong:0.85,maxWrong:4,streakCap:5};
 const norm=s=>s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/^the\s+/,"").replace(/[^a-z0-9]/g,"");
 
 // ---- scoring (design doc §4.1) ----
 function score({n,t,year,genre,wrong,streak}){
-  const reveal=1000-CFG.step*(n-1), time=1-CFG.timeW*Math.min(t,60)/60;
+  const reveal=1000-CFG.step*(n-1), time=1-CFG.timeW*Math.min(t,CFG.window)/CFG.window;
   const hint=(year?CFG.year:1)*(genre?CFG.genre:1), w=Math.pow(CFG.wrong,wrong), s=1+0.1*Math.min(streak,CFG.streakCap);
   return {reveal,time,hint,w,s,points:Math.floor(reveal*time*hint*w*s+0.5+1e-9)};
 }
@@ -55,7 +55,7 @@ function elapsed(){return (performance.now()-R.start)/1000}
 function onTick(){
   if(!R||R.done)return;
   const t=elapsed(), left=Math.max(0,CFG.window-t);
-  $("#timer").textContent=Math.ceil(left);$("#timebar").style.width=(left/CFG.window*100)+"%";
+  {const L=Math.ceil(left);$("#timer").textContent=Math.floor(L/60)+":"+String(L%60).padStart(2,"0");}$("#timebar").style.width=(left/CFG.window*100)+"%";
   const autoN=Math.min(6,1+Math.floor(t/CFG.auto));
   if(autoN>R.n){R.n=autoN;renderEmojis();}
   renderMeta();
@@ -68,7 +68,7 @@ function renderEmojis(){
   $("#btnReveal").disabled=R.n>=6;
 }
 function renderMeta(){
-  $("#wrongs").textContent=R.wrong?"❌".repeat(R.wrong)+` ${R.wrong}/3 wrong`:"";
+  $("#wrongs").textContent=R.wrong?"❌".repeat(R.wrong)+` ${R.wrong}/${CFG.maxWrong} wrong`:"";
   const sc=score({n:R.n,t:elapsed(),year:R.year,genre:R.genre,wrong:R.wrong,streak:S.streak});
   $("#potential").textContent=`Guess right now for ≈ ${sc.points} pts`;
 }
@@ -122,7 +122,7 @@ let toastT;function toast(h){const t=$("#toast");t.innerHTML=h;t.classList.add("
 // ---- end of round ----
 function endRound(ok,why){
   if(R.done)return;R.done=true;stopRound();$("#toast").classList.remove("show");
-  const t=Math.min(60,elapsed());
+  const t=Math.min(CFG.window,elapsed());
   const sc=ok?score({n:R.n,t,year:R.year,genre:R.genre,wrong:R.wrong,streak:S.streak}):{points:0};
   const res={id:R.p.id,ok,n:R.n,t:Math.round(t),year:R.year,genre:R.genre,points:sc.points};
   S.results.push(res);S.total+=sc.points;
