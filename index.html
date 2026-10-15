@@ -9,11 +9,13 @@
 <main id="app">
  <section id="home" class="view">
   <div class="ad" aria-label="Advertisement placeholder">Ad placeholder · 320×100</div>
-  <h1>Guess the movie from emojis</h1>
-  <p class="sub">Up to 6 emojis revealed one at a time. Faster guesses with fewer emojis score more.</p>
+  <div class="teaser" aria-hidden="true"><span id="teaserEmo"></span><span class="tq">❓</span></div>
+  <h1>Six emojis. One movie. How fast are you?</h1>
+  <p class="sub">One emoji at a time, the clues get clearer and your score gets smaller. Guess early, brag loudly.</p>
+  <p class="countdown">🕒 New puzzles in <b id="countdown">--</b></p>
   <div class="modes">
-   <button class="card mode" id="btnDaily"><span class="big">📅</span><b>Daily</b><small id="dailyInfo">5 puzzles · same for everyone today</small></button>
-   <button class="card mode" id="btnPractice"><span class="big">♾️</span><b>Practice / Endless</b><small>All puzzles, shuffled, keep your streak going</small></button>
+   <button class="card mode" id="btnDaily"><span class="big">📅</span><b>🎟️ Today's Feature</b><small id="dailyInfo">5 films, one shot at glory</small></button>
+   <button class="card mode" id="btnPractice"><span class="big">♾️</span><b>🍿 Endless Marathon</b><small>How long can your streak run?</small></button>
   </div>
   <label class="name">Your name for the local leaderboard <input id="playerName" maxlength="16" placeholder="Player"></label>
   <div class="ad" aria-label="Advertisement placeholder">Ad placeholder · 300×250</div>

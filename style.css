@@ -45,3 +45,11 @@ input{font:inherit;padding:12px;border-radius:12px;border:1px solid var(--line);
 footer{color:var(--mut);font-size:.75rem;text-align:center;padding:20px}
 a{color:var(--acc)}
 @media(max-width:520px){.modes{grid-template-columns:1fr}.emojis{gap:5px}h1{font-size:1.35rem}}
+
+.teaser{font-size:2.6rem;text-align:center;min-height:3.4rem;letter-spacing:.3rem;margin:.5rem 0}
+.teaser span#teaserEmo span{display:inline-block;animation:pop .35s ease-out}
+.teaser .tq{opacity:.6;animation:pulse 1.2s infinite}
+@keyframes pop{from{transform:scale(.2);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes pulse{50%{opacity:.2}}
+.countdown{text-align:center;opacity:.85;margin:.2rem 0 1rem}
+@media (prefers-reduced-motion:reduce){.teaser *{animation:none!important}}

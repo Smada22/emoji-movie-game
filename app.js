@@ -201,3 +201,10 @@ function renderBoard(){
 }
 $("#btnClearBoard").onclick=()=>{store.set("er_scores",[]);renderBoard()};
 })();
+
+// Home teaser (Home Alone, not a puzzle answer) and countdown to next UTC-day puzzle set
+(function(){const T=["🏠","👦","🎄","✈️","🪤","🦹"];let i=0;const el=document.getElementById("teaserEmo");
+function tick(){if(!el)return;i=i%(T.length+2);el.innerHTML=T.slice(0,Math.min(i,T.length)).map(e=>"<span>"+e+"</span>").join("");i++}
+tick();setInterval(tick,900);
+const cd=document.getElementById("countdown");function c(){if(!cd)return;const n=new Date(),m=Date.UTC(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate()+1),d=Math.max(0,m-n),h=Math.floor(d/36e5),mm=Math.floor(d%36e5/6e4);cd.textContent=h+"h "+mm+"m"}
+c();setInterval(c,30000)})();
