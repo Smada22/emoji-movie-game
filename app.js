@@ -214,8 +214,8 @@ let i=0;function tick(){const s=steps[i%steps.length];
 el.innerHTML=T.slice(0,s.n).map(e=>"<span>"+e+"</span>").join("");q.style.display=s.done?"none":"";
 msg.innerHTML=s.m||"&nbsp;";clk.textContent="0:"+String(s.t).padStart(2,"0");i++}
 let timer=null;const card=document.getElementById("demoCard"),btn=document.getElementById("demoToggle");
-btn.onclick=()=>{const on=card.classList.toggle("hidden")===false;btn.setAttribute("aria-expanded",on);
+btn.addEventListener("click",()=>{const on=card.classList.toggle("hidden")===false;btn.setAttribute("aria-expanded",on);
 btn.textContent=on?"■ Hide demo":"▶ Watch a demo round";clearInterval(timer);
-if(on){i=0;tick();timer=setInterval(tick,6000)}};})();
+if(on){i=0;tick();timer=setInterval(tick,6000)}});})();
 
 (function(){const cd=document.getElementById("countdown");function c(){if(!cd)return;const n=new Date(),m=Date.UTC(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate()+1),d=Math.max(0,m-n),h=Math.floor(d/36e5),mm=Math.floor(d%36e5/6e4);cd.textContent=h+"h "+mm+"m"}c();setInterval(c,30000)})();
