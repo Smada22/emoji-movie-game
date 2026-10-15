@@ -53,3 +53,10 @@ a{color:var(--acc)}
 @keyframes pulse{50%{opacity:.2}}
 .countdown{text-align:center;opacity:.85;margin:.2rem 0 1rem}
 @media (prefers-reduced-motion:reduce){.teaser *{animation:none!important}}
+
+.demo{max-width:420px;margin:.6rem auto 1rem;padding:.7rem 1rem;border:2px solid #f5c518;border-radius:16px;background:linear-gradient(160deg,#1c1c2e,#2a2140);box-shadow:0 6px 20px rgba(0,0,0,.35);color:#fff}
+.demohead{display:flex;justify-content:space-between;font-size:.75rem;letter-spacing:.08rem}
+.demohead .live{color:#f5c518}.dclock{font-variant-numeric:tabular-nums;opacity:.85}
+.demo .teaser{margin:.4rem 0}
+.demomsg{text-align:center;font-size:.85rem;min-height:1.3rem}
+.demomsg .bad{color:#ff8080}.demomsg .good{color:#7dff9a;font-weight:600}
