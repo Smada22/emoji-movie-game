@@ -202,20 +202,23 @@ function renderBoard(){
 $("#btnClearBoard").onclick=()=>{store.set("er_scores",[]);renderBoard()};
 })();
 
-// Home demo round (Home Alone, not a puzzle answer): each step simulates 10s of play
-(function(){const T=["🏠","👦","🎄","✈️","🪤","🦹"],el=document.getElementById("teaserEmo"),q=document.getElementById("teaserQ"),
-msg=document.getElementById("demoMsg"),clk=document.getElementById("demoClock");if(!el)return;
-const steps=[];for(let n=1;n<=3;n++)steps.push({n,t:(n-1)*10});
-steps.push({n:3,t:23,m:'<span class="bad">❌ "Elf" · You and 12% of players guessed Elf</span>'});
-steps.push({n:4,t:24});steps.push({n:5,t:34});
-steps.push({n:5,t:38,m:'<span class="good">✅ Home Alone (1990) · +318 points!</span>',done:1});
-steps.push({n:5,t:38,m:'<span class="good">✅ Home Alone (1990) · +318 points!</span>',done:1});
-let i=0;function tick(){const s=steps[i%steps.length];
-el.innerHTML=T.slice(0,s.n).map(e=>"<span>"+e+"</span>").join("");q.style.display=s.done?"none":"";
-msg.innerHTML=s.m||"&nbsp;";clk.textContent="0:"+String(s.t).padStart(2,"0");i++}
-let timer=null;const card=document.getElementById("demoCard"),btn=document.getElementById("demoToggle");
+// Home demo round (Home Alone, not a puzzle answer): each step simulates 10s of play; guesses are typed + picked from autocomplete
+(function(){const T=["🏠","👦","🎄","✈️","🪤","🦹"],$i=id=>document.getElementById(id);
+const el=$i("teaserEmo"),q=$i("teaserQ"),msg=$i("demoMsg"),clk=$i("demoClock"),ty=$i("demoType"),ph=$i("demoPh"),sg=$i("demoSugg"),card=$i("demoCard"),btn=$i("demoToggle");
+if(!el||!btn)return;let run=0;const wait=ms=>new Promise(r=>setTimeout(r,ms));
+function show(n,t,m,done){el.innerHTML=T.slice(0,n).map(e=>"<span>"+e+"</span>").join("");q.style.display=done?"none":"";clk.textContent="0:"+String(t).padStart(2,"0");if(m!==undefined)msg.innerHTML=m||"&nbsp;"}
+function setTyped(s){ty.textContent=s;ph.style.display=s?"none":""}
+async function guess(id,text,opts,pick){for(let k=1;k<=text.length;k++){if(id!==run)return;setTyped(text.slice(0,k));await wait(260)}
+ sg.innerHTML=opts.map((o,j)=>`<li class="${j===pick?"":""}">${o}</li>`).join("");sg.classList.remove("hidden");await wait(1300);if(id!==run)return;
+ sg.children[pick].classList.add("sel");await wait(900);if(id!==run)return;sg.classList.add("hidden");setTyped(opts[pick].replace(/<[^>]+>/g,""));await wait(500)}
+async function loop(id){while(id===run){setTyped("");sg.classList.add("hidden");
+ show(1,0,"");await wait(6000);if(id!==run)return;show(2,10);await wait(6000);if(id!==run)return;show(3,20);await wait(2500);
+ await guess(id,"Elf",["Elf (2003)","Elf-Man (2012)"],0);if(id!==run)return;
+ show(3,23,'<span class="bad">❌ "Elf" · You and 12% of players guessed Elf</span>');setTyped("");await wait(4000);if(id!==run)return;
+ show(4,24);await wait(6000);if(id!==run)return;show(5,34);await wait(2000);
+ await guess(id,"Home Al",["Home Alone (1990)","Home Alone 2: Lost in New York (1992)"],0);if(id!==run)return;
+ show(5,38,'<span class="good">✅ Home Alone (1990) · +318 points!</span>',1);await wait(7000)}}
 btn.addEventListener("click",()=>{const on=card.classList.toggle("hidden")===false;btn.setAttribute("aria-expanded",on);
-btn.textContent=on?"■ Hide demo":"▶ Watch a demo round";clearInterval(timer);
-if(on){i=0;tick();timer=setInterval(tick,6000)}});})();
+ btn.textContent=on?"■ Hide demo":"▶ Watch a demo round";run++;if(on)loop(run)});})();
 
 (function(){const cd=document.getElementById("countdown");function c(){if(!cd)return;const n=new Date(),m=Date.UTC(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate()+1),d=Math.max(0,m-n),h=Math.floor(d/36e5),mm=Math.floor(d%36e5/6e4);cd.textContent=h+"h "+mm+"m"}c();setInterval(c,30000)})();

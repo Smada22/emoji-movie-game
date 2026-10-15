@@ -2,7 +2,7 @@
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Emoji Reel — guess the movie from emojis (prototype)</title>
-<link rel="stylesheet" href="style.css?v=7">
+<link rel="stylesheet" href="style.css?v=8">
 </head><body>
 <header class="top"><div class="brand">🎬 Emoji Reel <span class="tag">prototype</span></div>
 <nav><button data-nav="home">Home</button><button data-nav="board">Leaderboard</button><button data-nav="help">How to play</button></nav></header>
@@ -12,6 +12,8 @@
   <button id="demoToggle" class="demotoggle" aria-expanded="false">▶ Watch a demo round</button>
   <div class="democard card hidden" id="demoCard" aria-hidden="true"><div class="demohead"><span class="live">● DEMO ROUND</span><span id="demoClock" class="dclock">0:00</span></div>
    <div class="teaser"><span id="teaserEmo"></span><span class="tq" id="teaserQ">❓</span></div>
+   <div class="dinput"><span id="demoType"></span><span class="caret">|</span><span class="ph" id="demoPh">Type a movie…</span></div>
+   <ul class="dsugg hidden" id="demoSugg"></ul>
    <div id="demoMsg" class="demomsg">&nbsp;</div></div>
   <h1>Six emojis. One movie. How fast are you?</h1>
   <p class="sub">One emoji at a time, the clues get clearer and your score gets smaller. Guess early, brag loudly.</p>
@@ -88,5 +90,5 @@
 </main>
 <div id="toast" class="toast" role="status"></div>
 <footer>Prototype. Wrong-guess stats are <b>demo data</b>. Streaming info from JustWatch pages (Oct 2026, may be outdated). Trailers are official uploads embedded via YouTube (privacy-enhanced mode); see YouTube Terms of Service and Google Privacy Policy.</footer>
-<script src="data.js?v=7"></script><script src="app.js?v=7"></script>
+<script src="data.js?v=8"></script><script src="app.js?v=8"></script>
 </body></html>

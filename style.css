@@ -64,3 +64,8 @@ a{color:var(--acc)}
 .democard{max-width:370px;padding:.55rem .85rem}.democard .teaser{font-size:2.25rem;min-height:3rem}
 .demotoggle{display:block;margin:.4rem auto;padding:.45rem 1rem;border-radius:999px;border:1px solid #f5c518;background:transparent;color:#f5c518;font-weight:600;cursor:pointer}
 .demotoggle{touch-action:manipulation;-webkit-appearance:none;position:relative;z-index:2}
+
+.dinput{margin:.35rem auto 0;max-width:290px;background:#0f0f1a;border:1px solid #555;border-radius:8px;padding:.35rem .6rem;font-size:.9rem;text-align:left;min-height:1.1rem}
+.dinput .ph{opacity:.45}.caret{color:#f5c518;animation:pulse 1s infinite;margin-right:2px}
+.dsugg{list-style:none;margin:2px auto 0;padding:0;max-width:290px;background:#1b1b2b;border:1px solid #555;border-radius:8px;text-align:left;font-size:.85rem;overflow:hidden}
+.dsugg li{padding:.3rem .6rem;border-top:1px solid #333}.dsugg li:first-child{border-top:0}.dsugg li.sel{background:#f5c518;color:#111;font-weight:600}
